@@ -11,29 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PlantsViewHolder extends RecyclerView.ViewHolder {
-
-    private ImageView imageView;
-    private TextView title;
-    private TextView description;
+    private ImageView mPlantImageView;
+    private TextView mPlantTitle;
+    private TextView mPlantDescription;
     public Context context;
 
     public PlantsViewHolder(@NonNull View itemView) {
         super(itemView);
-        imageView = itemView.findViewById(R.id.imageView);
-        title = itemView.findViewById(R.id.title);
-        description = itemView.findViewById(R.id.description);
+        mPlantImageView = itemView.findViewById(R.id.PlantImageView);
+        mPlantTitle = itemView.findViewById(R.id.PlantTitle);
+        mPlantDescription = itemView.findViewById(R.id.PlantDescription);
         context = itemView.getContext();
     }
 
     public void bindTo(Plant plant) {
-
         Glide.with(context)
                 .load(plant.getImageUrl())
-                .into(imageView);
-        title.setText(plant.getmName());
-        description.setText(plant.getmDescription());
-
-
+                .into(mPlantImageView);
+        mPlantTitle.setText(plant.getName());
+        mPlantDescription.setText(plant.getDescription());
     }
-
 }

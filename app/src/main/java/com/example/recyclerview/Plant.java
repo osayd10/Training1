@@ -32,10 +32,10 @@ public class Plant {
         return false;
     }
 
-    public Plant(String Id, String Name, String Description, String img) {
-        mId = Id;
-        mName = Name;
-        mDescription = Description;
+    public Plant(String id, String name, String description, String img) {
+        mId = id;
+        mName = name;
+        mDescription = description;
         mImageUrl = img;
     }
 
@@ -51,11 +51,11 @@ public class Plant {
         }
     };
 
-    public String getmName() {
+    public String getName() {
         return mName;
     }
 
-    public String getmDescription() {
+    public String getDescription() {
         return mDescription;
     }
 
