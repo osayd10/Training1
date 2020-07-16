@@ -15,13 +15,16 @@ public class PlantsViewHolder extends RecyclerView.ViewHolder {
     private TextView mPlantTitle;
     private TextView mPlantDescription;
     public Context context;
+    PlantsAdapter.PlantsOnClickListener plantsOnClickListener;
 
-    public PlantsViewHolder(@NonNull View itemView) {
+    public PlantsViewHolder(@NonNull View itemView, PlantsAdapter.PlantsOnClickListener plantsOnClickListener) {
         super(itemView);
         mPlantImageView = itemView.findViewById(R.id.PlantImageView);
         mPlantTitle = itemView.findViewById(R.id.PlantTitle);
         mPlantDescription = itemView.findViewById(R.id.PlantDescription);
         context = itemView.getContext();
+        this.plantsOnClickListener = plantsOnClickListener;
+        itemView.setOnClickListener(v -> plantsOnClickListener.plantsOnClick(getAdapterPosition()));
     }
 
     public void bindTo(Plant plant) {

@@ -8,19 +8,26 @@ import androidx.recyclerview.widget.ListAdapter;
 
 public class PlantsAdapter extends ListAdapter<Plant, PlantsViewHolder> {
 
-    public PlantsAdapter() {
+    private PlantsOnClickListener mPlantsOnClickListener;
+
+    public PlantsAdapter(PlantsOnClickListener plantsOnClickListener) {
         super(Plant.DIFF_CALLBACK);
+        this.mPlantsOnClickListener = plantsOnClickListener;
     }
 
     @NonNull
     @Override
     public PlantsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new PlantsViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.plants_list_items, parent, false));
+                .inflate(R.layout.plants_list_items, parent, false), mPlantsOnClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlantsViewHolder holder, int position) {
         holder.bindTo(getItem(position));
+    }
+
+    public interface PlantsOnClickListener {
+        void plantsOnClick(int position);
     }
 }

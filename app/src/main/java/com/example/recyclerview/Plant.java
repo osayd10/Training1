@@ -1,6 +1,8 @@
 package com.example.recyclerview;
 
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +11,7 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-public class Plant {
+public class Plant implements Parcelable {
 
     @SerializedName("plantId")
     private String mId;
@@ -30,6 +32,26 @@ public class Plant {
                     Objects.equals(mId, plant.mId);
         }
         return false;
+    }
+
+    public static final Creator<Plant> CREATOR = new Creator<Plant>() {
+        @Override
+        public Plant createFromParcel(Parcel in) {
+            return new Plant(in);
+        }
+
+        @Override
+        public Plant[] newArray(int size) {
+            return new Plant[size];
+        }
+    };
+
+
+    protected Plant(Parcel in) {
+        mId = in.readString();
+        mName = in.readString();
+        mDescription = in.readString();
+        mImageUrl = in.readString();
     }
 
     public Plant(String id, String name, String description, String img) {
@@ -61,5 +83,18 @@ public class Plant {
 
     public String getImageUrl() {
         return mImageUrl;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mId);
+        parcel.writeString(mName);
+        parcel.writeString(mDescription);
+        parcel.writeString(mImageUrl);
     }
 }

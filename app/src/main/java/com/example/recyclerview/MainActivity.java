@@ -1,6 +1,7 @@
 package com.example.recyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -20,36 +21,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PlantsAdapter.PlantsOnClickListener {
 
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
+    private List<Plant> mPlantsList = new ArrayList<>();
+    public static final String EXTRA_PLANT = MainActivity.class.getName() + "_PLANT_EXTRA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setupPlantsRecyclerView();
     }
 
     private List<Plant> getPlantsFromJson() {
-        List<Plant> plants = new ArrayList<>();
         try {
             JSONArray jarray = new JSONArray(loadJSONFromAsset(this));
-
             for (int i = 0; i < jarray.length(); i++) {
                 JSONObject plantJson = jarray.getJSONObject(i);
                 String plantId = plantJson.getString("plantId");
                 String name = plantJson.getString("name");
                 String description = plantJson.getString("description");
                 String imageUrl = plantJson.getString("imageUrl");
-                plants.add(new Plant(plantId, name, description, imageUrl));
+                mPlantsList.add(new Plant(plantId, name, description, imageUrl));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return plants;
+        return mPlantsList;
     }
 
     private void setupPlantsRecyclerView() {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progressBar_cyclic);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-        PlantsAdapter plantsAdapter = new PlantsAdapter();
+        PlantsAdapter plantsAdapter = new PlantsAdapter(this);
         mRecyclerView.setAdapter(plantsAdapter);
 
         plantsAdapter.submitList(getPlantsFromJson());
@@ -85,5 +85,13 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
         return json;
+    }
+
+    @Override
+    public void plantsOnClick(int position) {
+        Plant plant = mPlantsList.get(position);
+        Intent i = new Intent(MainActivity.this, PlantDetailsActivity.class);
+        i.putExtra(EXTRA_PLANT, plant);
+        startActivity(i);
     }
 }
