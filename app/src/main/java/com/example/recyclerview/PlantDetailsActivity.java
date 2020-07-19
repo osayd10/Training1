@@ -20,9 +20,9 @@ public class PlantDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityPlantsDetailsBinding activityPlantsDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_plants_details);
 
-        ImageView mDetailsImageView = findViewById(R.id.detailsimageView);
+        ImageView mDetailsImageView = findViewById(R.id.detailsImageView);
         Context context = this;
-        Plant plant = getIntent().getParcelableExtra(MainActivity.EXTRA_PLANT);
+        Plant plant = getIntent().getParcelableExtra(PlantsActivity.EXTRA_PLANT);
         if (plant != null) {
             Glide.with(context)
                     .load(plant.getImageUrl())

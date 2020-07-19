@@ -4,4 +4,10 @@
     <string name="describtion">describtion</string>
     <string name="Title">TextView</string>
     <string name="Describtion">TextView</string>
+    <string name="delete">Delete</string>
+    <string name="Favorite" />
+    <string name="EmptyMessage">You have no favourite plants yet!</string>
+    <string name="back">Back</string>
+    <string name="unfavorite">Unfavorite</string>
+    <string name="favorite">Favorite</string>
 </resources>
