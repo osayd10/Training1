@@ -1,4 +1,4 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.recyclerview.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ public class PlantsViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    private void setupViewHolder(PlantsAdapter.PlantClickedListener plantClickedListener){
+    private void setupViewHolder(PlantsAdapter.PlantClickedListener plantClickedListener) {
         mFavoriteStar = (ImageView) itemView.findViewById(R.id.favoriteStar);
         mPlantImageView = itemView.findViewById(R.id.plantImageView);
         mPlantTitle = itemView.findViewById(R.id.plantTitleTextView);

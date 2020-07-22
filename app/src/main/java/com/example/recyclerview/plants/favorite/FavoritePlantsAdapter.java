@@ -1,7 +1,10 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants.favorite;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.recyclerview.R;
+import com.example.recyclerview.plants.Plant;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;

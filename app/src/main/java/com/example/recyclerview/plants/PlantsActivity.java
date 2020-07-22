@@ -1,4 +1,4 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.recyclerview.plants.favorite.FavoritePlantsActivity;
+import com.example.recyclerview.plants.favorite.FavoritePlantsManeger;
+import com.example.recyclerview.plants.details.PlantDetailsActivity;
+import com.example.recyclerview.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,20 +32,18 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PlantsActivity extends AppCompatActivity implements PlantsAdapter.PlantClickedListener {
 
     public static final String EXTRA_PLANT = PlantsActivity.class.getName() + "_PLANT_EXTRA";
-    // private List<Plant> mFavoritePlantsList = new ArrayList<>();
     private List<Plant> mPlantsList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private PlantsAdapter mPlantsAdapter;
-
+    private FavoritePlantsManeger mFavoritePlantsManeger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plants);
-        setTitle("Plants");
         setupPlantsRecyclerView();
-        FavoritePlantsManeger.getFavoritePlantsList();
+        mFavoritePlantsManeger = FavoritePlantsManeger.getInstance();
     }
 
     @Override
@@ -54,12 +57,9 @@ public class PlantsActivity extends AppCompatActivity implements PlantsAdapter.P
         int id = item.getItemId();
         if (id == R.id.action_favorite) {
             Intent intent = new Intent(PlantsActivity.this, FavoritePlantsActivity.class);
-            // intent.putExtra(EXTRA_PLANT, (Serializable) mFavoritePlantsList);
             startActivity(intent);
-
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -124,8 +124,9 @@ public class PlantsActivity extends AppCompatActivity implements PlantsAdapter.P
 
     @Override
     public void onDeletePlant(int position) {
-        mPlantsList.remove(position);
+        Plant plant= mPlantsList.remove(position);
         mPlantsAdapter.submitList(new ArrayList<>(mPlantsList));
+        mFavoritePlantsManeger.removeFavoritePlant(plant);
 
         Toast.makeText(this, "Item has been deleted.", Toast.LENGTH_LONG).show();
     }
@@ -138,12 +139,10 @@ public class PlantsActivity extends AppCompatActivity implements PlantsAdapter.P
 
         if (!newPlant.getIsFavorite()) {
             newList.set(position, newPlant.setIsFavorite(true));
-            //mFavoritePlantsList.add(newPlant);
-            FavoritePlantsManeger.getFavoritePlantsList().add(newPlant);
+            mFavoritePlantsManeger.addFavoritePlant(newPlant);
         } else {
             newList.set(position, newPlant.setIsFavorite(false));
-            // mFavoritePlantsList.remove(plant);
-            FavoritePlantsManeger.getFavoritePlantsList().remove(plant);
+            mFavoritePlantsManeger.removeFavoritePlant(plant);
         }
         mPlantsAdapter.submitList(newList, () -> mPlantsList.set(position, newPlant));
     }

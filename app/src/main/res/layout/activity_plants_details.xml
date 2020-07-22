@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".PlantDetailsActivity">
+        tools:context=".plants.details.PlantDetailsActivity">
 
         <ImageView
             android:id="@+id/detailsImageView"
@@ -29,10 +29,10 @@
             android:id="@+id/detailsDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp"
             android:paddingTop="10dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="10dp"
             android:text="@{plant.getDescription}"
             android:textSize="18sp" />
     </LinearLayout>
@@ -41,6 +41,6 @@
 
         <variable
             name="plant"
-            type="com.example.recyclerview.Plant" />
+            type="com.example.recyclerview.plants.Plant" />
     </data>
 </layout>

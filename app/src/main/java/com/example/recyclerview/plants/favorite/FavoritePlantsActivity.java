@@ -1,4 +1,4 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants.favorite;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.recyclerview.R;
+import com.example.recyclerview.plants.PlantsActivity;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class FavoritePlantsActivity extends AppCompatActivity {
 
-    private List<Plant> mFavoritePlantsList = new ArrayList<>();
     private RecyclerView mFavoriteRecyclerView;
     private ProgressBar mFavoriteProgressBar;
+    private FavoritePlantsManeger mFavoritePlantsManeger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +30,16 @@ public class FavoritePlantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_plants);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Favorite plants");
+            getSupportActionBar().setTitle(R.string.favorite_title);
         }
+        mFavoritePlantsManeger = FavoritePlantsManeger.getInstance();
         mFavoriteRecyclerView = findViewById(R.id.favoriteRecyclerView);
         mFavoriteProgressBar = findViewById(R.id.favoriteProgressBarCyclic);
 
-        // mFavoritePlantsList = getIntent().getParcelableArrayListExtra(PlantsActivity.EXTRA_PLANT);
-        mFavoritePlantsList = FavoritePlantsManeger.getFavoritePlantsList();
-        if (mFavoritePlantsList != null) {
-            if (mFavoritePlantsList.size() == 0) {
-                showEmptyListMessage();
-            } else {
-                setupFavoritePlantsRecyclerView();
-            }
+        if (mFavoritePlantsManeger.getFavoritePlantsList().isEmpty()) {
+            showEmptyListMessage();
+        } else {
+            setupFavoritePlantsRecyclerView();
         }
     }
 
@@ -66,7 +65,7 @@ public class FavoritePlantsActivity extends AppCompatActivity {
         mFavoriteRecyclerView.setLayoutManager(layoutManager);
         FavoritePlantsAdapter favoritePlantsAdapter = new FavoritePlantsAdapter();
         mFavoriteRecyclerView.setAdapter(favoritePlantsAdapter);
-        favoritePlantsAdapter.submitList(mFavoritePlantsList);
+        favoritePlantsAdapter.submitList(new ArrayList<>(mFavoritePlantsManeger.getFavoritePlantsList()));
         hideLoading();
     }
 

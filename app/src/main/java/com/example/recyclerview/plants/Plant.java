@@ -1,4 +1,4 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -28,7 +28,8 @@ public class Plant implements Parcelable {
         return mName.equals(plant.mName) && mId.equals(plant.mId) && mDescription.equals(plant.mDescription)
                 && mImageUrl.equals(plant.mImageUrl) && mIsFavorite == plant.mIsFavorite;
     }
-    static DiffUtil.ItemCallback<Plant> DIFF_CALLBACK = new DiffUtil.ItemCallback<Plant>() {
+
+    public static DiffUtil.ItemCallback<Plant> DIFF_CALLBACK = new DiffUtil.ItemCallback<Plant>() {
         @Override
         public boolean areItemsTheSame(@NonNull Plant oldItem, @NonNull Plant newItem) {
             return oldItem.mId.equals(newItem.mId);
@@ -79,6 +80,26 @@ public class Plant implements Parcelable {
         mImageUrl = img;
     }
 
+    public Plant setName(String name) {
+        mName = name;
+        return this;
+    }
+
+    public Plant setDescription(String description) {
+        mDescription = description;
+        return this;
+    }
+
+    public Plant setImageUrl(String imageUrl) {
+        mImageUrl = imageUrl;
+        return this;
+    }
+
+    public Plant setIsFavorite(boolean IsFavorite) {
+        mIsFavorite = IsFavorite;
+        return this;
+    }
+
     public String getName() {
         return mName;
     }
@@ -101,26 +122,6 @@ public class Plant implements Parcelable {
 
     public Plant setId(String id) {
         mId = id;
-        return this;
-    }
-
-    public Plant setName(String name) {
-        mName = name;
-        return this;
-    }
-
-    public Plant setDescription(String description) {
-        mDescription = description;
-        return this;
-    }
-
-    public Plant setImageUrl(String imageUrl) {
-        mImageUrl = imageUrl;
-        return this;
-    }
-
-    public Plant setIsFavorite(boolean IsFavorite) {
-        mIsFavorite = IsFavorite;
         return this;
     }
 

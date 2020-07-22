@@ -10,4 +10,8 @@
     <string name="back">Back</string>
     <string name="unfavorite">Unfavorite</string>
     <string name="favorite">Favorite</string>
+    <string name="favorite_title">Favorite plants</string>
+    <string name="plants">Plants</string>
+    <string name="plant_datails">Plants Details</string>
+
 </resources>

@@ -1,7 +1,9 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.recyclerview.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;

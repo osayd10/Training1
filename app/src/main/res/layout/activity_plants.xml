@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PlantsActivity">
+    tools:context=".plants.PlantsActivity">
 
     <ProgressBar
         android:id="@+id/progressBarCyclic"
@@ -18,5 +18,4 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:visibility="gone" />
-
 </LinearLayout>

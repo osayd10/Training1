@@ -1,4 +1,4 @@
-package com.example.recyclerview;
+package com.example.recyclerview.plants.favorite;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.recyclerview.R;
+import com.example.recyclerview.plants.Plant;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
