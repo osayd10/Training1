@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".plants.details.PlantDetailsActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/plantDetailsToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:theme="@style/AppTheme"
+            app:titleTextColor="@color/white" />
 
         <ImageView
             android:id="@+id/detailsImageView"
@@ -28,11 +37,15 @@
         <TextView
             android:id="@+id/detailsDescriptionTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
             android:paddingLeft="8dp"
             android:paddingTop="10dp"
             android:paddingRight="8dp"
             android:paddingBottom="10dp"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
             android:text="@{plant.getDescription}"
             android:textSize="18sp" />
     </LinearLayout>

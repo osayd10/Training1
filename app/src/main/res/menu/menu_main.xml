@@ -5,11 +5,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:context=".plants.PlantsActivity">
-
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_favorite1"
+        android:icon="@drawable/ic_favorite_heart"
         android:orderInCategory="300"
-        android:title="@string/Favorite"
+        android:title="@string/favorite_icon"
         app:showAsAction="ifRoom" />
 </menu>

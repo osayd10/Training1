@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,14 +25,18 @@ public class FavoritePlantsActivity extends AppCompatActivity {
     private ProgressBar mFavoriteProgressBar;
     private FavoritePlantsManeger mFavoritePlantsManeger;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_plants);
-        if (getSupportActionBar() != null) {
+        Toolbar favoriteActivityToolbar;
+        favoriteActivityToolbar = findViewById(R.id.favoriteActivityToolbar);
+        setSupportActionBar(favoriteActivityToolbar);
+        if (getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle(R.string.favorite_title);
         }
+
         mFavoritePlantsManeger = FavoritePlantsManeger.getInstance();
         mFavoriteRecyclerView = findViewById(R.id.favoriteRecyclerView);
         mFavoriteProgressBar = findViewById(R.id.favoriteProgressBarCyclic);

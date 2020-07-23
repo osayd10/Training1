@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.recyclerview.R;
@@ -17,18 +19,25 @@ import com.example.recyclerview.plants.PlantsActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 
 public class PlantDetailsActivity extends AppCompatActivity {
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityPlantsDetailsBinding activityPlantsDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_plants_details);
-        if (getSupportActionBar() != null) {
+        TextView detailsDescriptionTextView=findViewById(R.id.detailsDescriptionTextView);
+        detailsDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
+        Toolbar plantDetailsToolbar;
+        plantDetailsToolbar = findViewById(R.id.plantDetailsToolbar);
+        setSupportActionBar(plantDetailsToolbar);
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
+
         ImageView mDetailsImageView = findViewById(R.id.detailsImageView);
         Context context = this;
 

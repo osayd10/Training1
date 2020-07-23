@@ -28,7 +28,7 @@ public class PlantsViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void setupViewHolder(PlantsAdapter.PlantClickedListener plantClickedListener) {
-        mFavoriteStar = (ImageView) itemView.findViewById(R.id.favoriteStar);
+        mFavoriteStar = itemView.findViewById(R.id.favoriteStar);
         mPlantImageView = itemView.findViewById(R.id.plantImageView);
         mPlantTitle = itemView.findViewById(R.id.plantTitleTextView);
         mPlantDescription = itemView.findViewById(R.id.plantDescriptionTextView);
